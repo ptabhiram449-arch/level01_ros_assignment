@@ -1,0 +1,28 @@
+BUGS FOUND AND FIXED
+
+Bug 1
+File: testbed_description/CMakeLists.txt (last line)
+Symptom: colcon build failed: "Parse error. Expected '(', got newline"
+Cause: ament_package was written without parentheses, so it wasn't a valid CMake command call
+Fix: changed "ament_package" to "ament_package()"
+
+Bug 2
+File: testbed_bringup/maps/testbed_world.yaml (line 1)
+Problem: image pointed to wrong_path_testbed_world.pgm, which does not exist,
+         so map_server would fail to load the map
+Fix: changed to testbed_world.pgm (the actual file in the same folder)
+
+Bug 3
+File: testbed_bringup/CMakeLists.txt (install(DIRECTORY ...))
+Problem: only "launch" was installed; maps/ was missing from
+         install/testbed_bringup/share/testbed_bringup/, so the map could not be
+         found by map_server via the package share path
+Fix: added maps to the install list
+
+Bug 4
+File: testbed_gazebo/CMakeLists.txt (install(DIRECTORY ...))
+Problem: models/ was not installed, but spawn_playground.launch.py adds
+         share/testbed_gazebo/models to GAZEBO_MODEL_PATH
+Fix: added models to the install list
+
+
