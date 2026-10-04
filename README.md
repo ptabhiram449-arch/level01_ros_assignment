@@ -128,3 +128,8 @@ We’re excited to see how you approach this task. Good luck, and happy coding! 
  - Name: Your full name
  - Contact number: Your contact number
  - Email Address: Your email address
+
+## Submission notes
+- Bugs found and fixed: see `BUGS.txt`
+- Package documentation: `testbed_navigation/README.md`
+- Screenshots and demo video: `docs/`
