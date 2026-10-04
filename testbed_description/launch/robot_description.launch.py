@@ -5,6 +5,7 @@ from launch.substitutions import Command, FindExecutable, PathJoinSubstitution
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
 
+
 def generate_launch_description():
     robot_description_content = Command([
         PathJoinSubstitution([FindExecutable(name="xacro")]),
@@ -13,7 +14,7 @@ def generate_launch_description():
             FindPackageShare("testbed_description"),
             "urdf",
             "testbed.xacro",
-            ]),
+        ]),
     ])
 
     robot_description = {"robot_description": robot_description_content}
@@ -23,5 +24,5 @@ def generate_launch_description():
             executable='robot_state_publisher',
             name='robot_state_publisher',
             output='screen',
-            parameters=[robot_description]),
+            parameters=[robot_description, {'use_sim_time': True}]),
     ])

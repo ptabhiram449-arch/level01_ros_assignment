@@ -25,4 +25,16 @@ Problem: models/ was not installed, but spawn_playground.launch.py adds
          share/testbed_gazebo/models to GAZEBO_MODEL_PATH
 Fix: added models to the install list
 
+OTHER CHANGES (tuning/hardening, not crashes)
+
+Change A
+File: testbed_description/urdf/testbed.gazebo (lidar <range><max>)
+Observation: /scan range_max was 1.5 m, too short for localization on a 20 m map
+Change: increased to 10.0 m
+
+Change B
+File: testbed_description/launch/robot_description.launch.py
+Observation: robot_state_publisher ran without use_sim_time under a Gazebo clock
+Change: added use_sim_time: True
+
 
